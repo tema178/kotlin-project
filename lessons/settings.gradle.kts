@@ -8,9 +8,7 @@ pluginManagement {
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
-rootProject.name = "kotlin-project"
+rootProject.name = "lessons"
 
-includeBuild("lessons")
-includeBuild("notion")
-
+include("m1l1-first")
 
