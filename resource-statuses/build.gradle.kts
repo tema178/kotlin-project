@@ -3,6 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
 }
 
-group = "org.tema.kotlin.notion"
+group = "org.tema.kotlin.resource-statuses"
 version = "0.0.1"
 
