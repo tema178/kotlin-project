@@ -1,4 +1,4 @@
-package notion.plugin
+package resource.statuses.plugin
 
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Plugin

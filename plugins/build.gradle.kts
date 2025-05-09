@@ -6,11 +6,11 @@ gradlePlugin {
     plugins {
         register("build-jvm") {
             id = "build-jvm"
-            implementationClass = "notion.plugin.BuildPluginJvm"
+            implementationClass = "resource.statuses.plugin.BuildPluginJvm"
         }
         register("build-kmp") {
             id = "build-kmp"
-            implementationClass = "notion.plugin.BuildPluginMultiplatform"
+            implementationClass = "resource.statuses.plugin.BuildPluginMultiplatform"
         }
     }
 }

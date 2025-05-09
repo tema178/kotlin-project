@@ -11,6 +11,6 @@ plugins {
 rootProject.name = "kotlin-project"
 
 includeBuild("lessons")
-includeBuild("notion")
+includeBuild("resource-statuses")
 
 

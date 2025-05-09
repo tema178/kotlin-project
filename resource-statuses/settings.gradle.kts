@@ -1,4 +1,4 @@
-rootProject.name = "notion"
+rootProject.name = "resource-statuses"
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -28,4 +28,4 @@ plugins {
 //implementation(projects.m2l5Gradle.sub1.ssub1)
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include(":notion-tmp")
+include(":resource-statuses-tmp")

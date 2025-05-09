@@ -1,4 +1,4 @@
-package notion.plugin
+package resource.statuses.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
