@@ -87,7 +87,7 @@ private fun ResourceSearchFilter?.toInternal(): Filter = Filter(
     id = this?.id?.let(::ResourceId) ?: ResourceId.NONE,
     type = this?.resourceType?.let(::ResourceType) ?: ResourceType.DEFAULT,
     status = this?.status?.let(::ResourceStatus) ?: ResourceStatus.NONE,
-    ownerId = this?.ownerId?.let (::UserId) ?: UserId.NONE,
+    ownerId = this?.updatedBy?.let (::UserId) ?: UserId.NONE,
 )
 
 private fun ResourceCreateObject.toInternal(): Resource = Resource(

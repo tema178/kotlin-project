@@ -46,7 +46,7 @@ fun List<Resource>.toTransportResource(): List<ResourceResponseObject>? = this
     .toList()
     .takeIf { it.isNotEmpty() }
 
-private fun Resource.toTransportResource(): ResourceResponseObject = ResourceResponseObject(
+fun Resource.toTransportResource(): ResourceResponseObject = ResourceResponseObject(
     id = id.takeIf { it != ResourceId.NONE }?.asString(),
     resourceType = type.asString(),
     status = status.asString(),

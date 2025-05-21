@@ -9,6 +9,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(projects.apiV1)
     implementation(projects.resourceStatusesCommon)
+    implementation(projects.stubs)
     implementation(libs.kotlinx.datetime)
     testImplementation(kotlin("test-junit"))
 }

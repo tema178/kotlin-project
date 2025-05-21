@@ -1,5 +1,7 @@
 package models
 
+import kotlin.jvm.JvmInline
+
 @JvmInline
 value class ResourceId(private val id: String) {
 

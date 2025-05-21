@@ -282,7 +282,7 @@ components:
           $ref: '#/components/schemas/ResourceType'
         status:
           $ref: '#/components/schemas/ResourceStatus'
-        ownerId:
+        updatedBy:
           $ref: '#/components/schemas/UserId'
 
     ResourceSearchRequest:

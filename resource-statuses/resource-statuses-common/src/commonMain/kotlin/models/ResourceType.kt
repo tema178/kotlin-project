@@ -1,5 +1,7 @@
 package models
 
+import kotlin.jvm.JvmInline
+
 @JvmInline
 value class ResourceType(private val type: String) {
 

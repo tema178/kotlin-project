@@ -2,22 +2,19 @@ import models.*
 import org.junit.Test
 import org.tema.kotlin.resource.statuses.api.v1.models.*
 import stubs.Stubs
-
 import kotlin.test.assertEquals
 
-class MapperTest {
+class MapperReadTest {
+
     @Test
     fun fromTransport() {
-        val req = ResourceCreateRequest(
+        val req = ResourceReadRequest(
             debug = Debug(
                 mode = RequestDebugMode.STUB,
                 stub = RequestDebugStubs.SUCCESS,
             ),
-            resource = ResourceCreateObject(
-                id = "book100",
-                resourceType = "book",
-                status = "available"
-            ),
+            resource = ResourceStub.get().toTransportReadResource()
+
         )
 
         val context = Context()
@@ -25,19 +22,15 @@ class MapperTest {
 
         assertEquals(Stubs.SUCCESS, context.stubCase)
         assertEquals(WorkMode.STUB, context.workMode)
-        assertEquals("book100", context.request.id.asString())
+        assertEquals("PeaceAndWar", context.request.id.asString())
     }
 
     @Test
     fun toTransport() {
         val context = Context(
             requestId = RequestId("1234"),
-            command = Command.CREATE,
-            resource = Resource(
-                id = ResourceId("book100"),
-                type = ResourceType("book"),
-                status = ResourceStatus("available")
-            ),
+            command = Command.READ,
+            resource = ResourceStub.get(),
             errors = mutableListOf(
                 ResourceError(
                     code = "err",
@@ -49,11 +42,9 @@ class MapperTest {
             state = State.RUNNING,
         )
 
-        val req = context.toTransportResource() as ResourceCreateResponse
+        val req = context.toTransportResource() as ResourceReadResponse
 
-        assertEquals("book100", req.resource?.id)
-        assertEquals("book", req.resource?.resourceType)
-        assertEquals("available", req.resource?.status)
+        assertEquals(req.resource, ResourceStub.get().toTransportResource())
         assertEquals(1, req.errors?.size)
         assertEquals("err", req.errors?.firstOrNull()?.code)
         assertEquals("request", req.errors?.firstOrNull()?.group)

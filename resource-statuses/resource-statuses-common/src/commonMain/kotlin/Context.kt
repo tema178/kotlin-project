@@ -16,6 +16,6 @@ data class Context(
     var filterRequest: Filter = Filter(),
 
     var resource: Resource = Resource(),
-    var resources: MutableList<Resource> = mutableListOf(),
+    var resources: List<Resource> = mutableListOf(),
 
     )
