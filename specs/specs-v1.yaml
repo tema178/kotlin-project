@@ -1,0 +1,385 @@
+openapi: 3.0.3
+info:
+  title: "Resource statuses ${VERSION_APP}"
+  description: This is a place where you can control status of your resources
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: resource
+    description: Статус ресурса
+paths:
+  /resource/create:
+    post:
+      tags:
+        - resource
+      summary: Create resource
+      operationId: resourceCreate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCreateResponse'
+  /resource/read:
+    post:
+      tags:
+        - resource
+      summary: Read resource
+      operationId: statusRead
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceReadRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceReadResponse'
+  /resource/update:
+    post:
+      tags:
+        - resource
+      summary: Update resource
+      operationId: statusUpdate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceUpdateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceUpdateResponse'
+  /resource/delete:
+    post:
+      tags:
+        - resource
+      summary: Delete resource
+      operationId: resourceDelete
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceDeleteRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDeleteResponse'
+  /resource/search:
+    post:
+      tags:
+        - resource
+      summary: Search resource
+      operationId: resourceSearch
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceSearchRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceSearchResponse'
+
+
+components:
+  schemas:
+
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/ResourceCreateRequest'
+          read:   '#/components/schemas/ResourceReadRequest'
+          update: '#/components/schemas/ResourceUpdateRequest'
+          delete: '#/components/schemas/ResourceDeleteRequest'
+          search: '#/components/schemas/ResourceSearchRequest'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        group:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+
+    ResponseResult:
+      type: string
+      enum:
+        - success
+        - error
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/ResourceCreateResponse'
+          read:   '#/components/schemas/ResourceReadResponse'
+          update: '#/components/schemas/ResourceUpdateResponse'
+          delete: '#/components/schemas/ResourceDeleteResponse'
+          search: '#/components/schemas/ResourceSearchResponse'
+
+
+    UserId:
+      type: string
+      description: Идентификатор пользователя
+    ResourceId:
+      type: string
+      description: Ключ ресурса
+    ResourceType:
+      type: string
+      description: Тип ресурса
+    ResourceStatus:
+      type: string
+      description: Статус ресурса
+    Lock:
+      type: string
+      description: Версия оптимистичной блокировки
+
+    BaseResource:
+      type: object
+      description: Объект описывает свойства, одинаковые для create и update
+      properties:
+        id:
+          $ref: '#/components/schemas/ResourceId'
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+        status:
+          $ref: '#/components/schemas/ResourceStatus'
+
+    ResourceCreateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+
+    ResourceCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            resource:
+              $ref: '#/components/schemas/ResourceCreateObject'
+
+    ResourceReadObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ResourceId'
+            resourceType:
+              $ref: '#/components/schemas/ResourceType'
+
+    ResourceReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            resource:
+              $ref: '#/components/schemas/ResourceReadObject'
+
+    ResourceUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            resource:
+              $ref: '#/components/schemas/ResourceUpdateObject'
+
+    ResourceUpdateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+        - type: object
+          properties:
+            lock:
+              $ref: '#/components/schemas/Lock'
+
+    ResourceDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            resource:
+              $ref: '#/components/schemas/ResourceDeleteObject'
+
+    ResourceDeleteObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ResourceId'
+            resourceType:
+              $ref: '#/components/schemas/ResourceType'
+            lock:
+              $ref: '#/components/schemas/Lock'
+
+    ResourceSearchFilter:
+      type: object
+      description: Набор фильтров для поиска
+      properties:
+        id:
+          $ref: '#/components/schemas/ResourceId'
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+        status:
+          $ref: '#/components/schemas/ResourceStatus'
+        updatedBy:
+          $ref: '#/components/schemas/UserId'
+
+    ResourceSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            resourceFilter:
+              $ref: '#/components/schemas/ResourceSearchFilter'
+
+    ResourceResponseObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+        - type: object
+          description: Объект, который возвращается в ответе бэкенда
+          properties:
+            updatedBy:
+              $ref: '#/components/schemas/UserId'
+            updatedAt:
+              type: number
+              description: Время обновления статуса
+            lock:
+              $ref: '#/components/schemas/Lock'
+
+    ResourceResponseSingle:
+      allOf:
+        - type: object
+          description: Ответ с одним объектом
+          properties:
+            resource:
+              $ref: '#/components/schemas/ResourceResponseObject'
+
+    ResourceResponseMulti:
+      allOf:
+        - type: object
+          description: Список найденных объектов
+          properties:
+            resources:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResourceResponseObject'
+
+    ResourceCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ResourceResponseSingle'
+
+    ResourceReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ResourceResponseSingle'
+
+    ResourceUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ResourceResponseSingle'
+
+    ResourceDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ResourceResponseSingle'
+
+    ResourceSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ResourceResponseMulti'
+
+    # STUBS ======================
+    RequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    RequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/Debug'
+
+    Debug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/RequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/RequestDebugStubs'
+
+    RequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+        - badType
+        - cannotDelete
+        - badSearchString
