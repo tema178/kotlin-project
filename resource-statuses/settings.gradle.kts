@@ -28,4 +28,7 @@ plugins {
 //implementation(projects.m2l5Gradle.sub1.ssub1)
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include(":resource-statuses-tmp")
+include(":resource-statuses-common")
+include(":api-v1")
+include(":api-v1-mappers")
+include(":stubs")
