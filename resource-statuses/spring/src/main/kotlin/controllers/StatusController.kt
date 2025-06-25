@@ -1,10 +1,10 @@
-package io.tema.app.spring.controllers
+package org.tema.app.spring.controllers
 
+import IStatusAppSettings
 import ResourceStub
+import controllerHelper
 import fromTransport
-import io.tema.app.spring.config.IStatusAppSettings
-import io.tema.app.spring.config.StatusAppSettings
-import io.tema.app.spring.util.controllerHelper
+import org.tema.app.spring.config.StatusAppSettings
 import models.Resource
 import org.springframework.web.bind.annotation.*
 import org.tema.kotlin.resource.statuses.api.v1.models.*

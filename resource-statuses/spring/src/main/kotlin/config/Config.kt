@@ -1,6 +1,9 @@
-package io.tema.app.spring.config
+package org.tema.app.spring.config
 
-import io.tema.app.spring.util.StatusProcessor
+import CorSettings
+import LoggerProvider
+import StatusProcessor
+import loggerLogback
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -8,12 +11,22 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class Config {
     @Bean
-    fun processor() = StatusProcessor()
+    fun processor(corSettings: CorSettings) = StatusProcessor(corSettings = corSettings)
+
+    @Bean
+    fun loggerProvider(): LoggerProvider = LoggerProvider { loggerLogback(it) }
+
+    @Bean
+    fun corSettings(): CorSettings = CorSettings(
+        loggerProvider = loggerProvider()
+    )
 
     @Bean
     fun appSettings(
         processor: StatusProcessor,
+        corSettings: CorSettings
     ) = StatusAppSettings(
         processor = processor,
+        corSettings = corSettings
     )
 }

@@ -1,4 +1,4 @@
-package io.tema.app.spring
+package org.tema.app.spring
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

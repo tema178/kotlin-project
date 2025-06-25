@@ -1,4 +1,4 @@
-package io.tema.app.spring.util
+package util
 
 import models.ResourceError
 

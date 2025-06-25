@@ -20,9 +20,13 @@ dependencies {
 
     // Внутренние модели
     implementation(project(":resource-statuses-common"))
+    implementation(project(":app-common"))
     implementation(project(":stubs"))
     implementation(project(":api-v1-mappers"))
     implementation(project(":api-v1"))
+
+    implementation("libs:lib-logging-logback")
+    implementation(projects.biz)
 
     // tests
     testImplementation(kotlin("test-junit5"))

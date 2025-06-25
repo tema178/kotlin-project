@@ -1,9 +1,9 @@
-package io.tema.app.spring.stub
+package org.tema.app.spring.stub
 
 import Context
-import io.tema.app.spring.config.Config
-import io.tema.app.spring.controllers.StatusController
-import io.tema.app.spring.util.StatusProcessor
+import org.tema.app.spring.config.Config
+import org.tema.app.spring.controllers.StatusController
+import StatusProcessor
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest

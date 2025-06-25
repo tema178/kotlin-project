@@ -1,8 +1,10 @@
-package io.tema.app.spring.config
+package org.tema.app.spring.config
 
-import io.tema.app.spring.util.StatusProcessor
+import CorSettings
+import IStatusAppSettings
+import StatusProcessor
 
 data class StatusAppSettings(
-//    override val corSettings: MkplCorSettings,
+    override val corSettings: CorSettings,
     override val processor: StatusProcessor,
 ): IStatusAppSettings

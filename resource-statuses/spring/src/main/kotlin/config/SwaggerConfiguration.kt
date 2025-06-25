@@ -1,4 +1,4 @@
-package io.tema.app.spring.config
+package org.tema.app.spring.config
 
 import org.springdoc.core.configuration.SpringDocConfiguration
 import org.springdoc.core.properties.SpringDocConfigProperties
