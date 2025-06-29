@@ -18,10 +18,10 @@ class AppKafkaConfig(
     override val processor: StatusProcessor = StatusProcessor(corSettings),
 ): IStatusAppSettings {
     companion object {
-        const val KAFKA_HOST_VAR = "KAFKA_HOSTS"
-        const val KAFKA_TOPIC_IN_V1_VAR = "KAFKA_TOPIC_IN_V1"
-        const val KAFKA_TOPIC_OUT_V1_VAR = "KAFKA_TOPIC_OUT_V1"
-        const val KAFKA_GROUP_ID_VAR = "KAFKA_GROUP_ID"
+        private const val KAFKA_HOST_VAR = "KAFKA_HOSTS"
+        private const val KAFKA_TOPIC_IN_V1_VAR = "KAFKA_TOPIC_IN_V1"
+        private const val KAFKA_TOPIC_OUT_V1_VAR = "KAFKA_TOPIC_OUT_V1"
+        private const val KAFKA_GROUP_ID_VAR = "KAFKA_GROUP_ID"
 
         val KAFKA_HOSTS by lazy { (System.getenv(KAFKA_HOST_VAR) ?: "").split("\\s*[,; ]\\s*") }
         val KAFKA_GROUP_ID by lazy { System.getenv(KAFKA_GROUP_ID_VAR) ?: "marketplace" }

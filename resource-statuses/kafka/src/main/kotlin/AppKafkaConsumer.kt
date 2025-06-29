@@ -71,7 +71,6 @@ class AppKafkaConsumer(
         } catch (ex: WakeupException) {
             // ignore for shutdown
         } catch (ex: RuntimeException) {
-            // exception handling
             withContext(NonCancellable) {
                 throw ex
             }
@@ -85,7 +84,6 @@ class AppKafkaConsumer(
     private suspend fun sendResponse(json: String, outputTopic: String) {
         val resRecord = ProducerRecord(
             outputTopic,
-//            null,
             UUID.randomUUID().toString(),
             json
         )
