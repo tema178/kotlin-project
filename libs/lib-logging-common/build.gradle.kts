@@ -4,30 +4,26 @@ plugins {
 
 kotlin {
     sourceSets {
-        val coroutinesVersion: String by project
-        commonMain {
+        val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
+                implementation(kotlin("stdlib-common"))
                 implementation(libs.kotlinx.datetime)
-                api("libs:lib-logging-common")
-
             }
         }
-        commonTest {
+        val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
-
-        jvmTest {
+        val jvmMain by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(kotlin("stdlib-jdk8"))
             }
         }
-        nativeTest {
+        val jvmTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(kotlin("test-junit"))
             }
         }
     }

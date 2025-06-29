@@ -8,15 +8,22 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
+                implementation(libs.coroutines.core)
                 implementation(libs.kotlinx.datetime)
-                api("libs:lib-logging-common")
 
+                // transport models
+                implementation(project(":resource-statuses-common"))
+                implementation(project(":log"))
+
+                implementation(project(":biz"))
             }
         }
         commonTest {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+
+                implementation(libs.coroutines.test)
             }
         }
 

@@ -29,6 +29,11 @@ plugins {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":resource-statuses-common")
+include(":app-common")
 include(":api-v1")
 include(":api-v1-mappers")
 include(":stubs")
+include(":spring")
+include(":log")
+include(":kafka")
+include(":biz")
