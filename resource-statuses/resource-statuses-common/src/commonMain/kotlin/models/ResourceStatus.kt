@@ -10,4 +10,9 @@ value class ResourceStatus(private val status: String) {
     companion object {
         val NONE = ResourceStatus("")
     }
+
+    fun isEmpty(): Boolean = status.isEmpty()
+
+    fun contains(name: Regex): Boolean = status.contains(name)
+
 }

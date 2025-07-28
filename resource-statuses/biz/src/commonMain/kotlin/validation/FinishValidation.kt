@@ -6,7 +6,7 @@ import models.State
 import worker
 
 
-fun ICorChainDsl<Context>.finishAdValidation(title: String) = worker {
+fun ICorChainDsl<Context>.finishValidation(title: String) = worker {
     this.title = title
     on { state == State.RUNNING }
     handle {
@@ -14,7 +14,7 @@ fun ICorChainDsl<Context>.finishAdValidation(title: String) = worker {
     }
 }
 
-fun ICorChainDsl<Context>.finishAdFilterValidation(title: String) = worker {
+fun ICorChainDsl<Context>.finishFilterValidation(title: String) = worker {
     this.title = title
     on { state == State.RUNNING }
     handle {
