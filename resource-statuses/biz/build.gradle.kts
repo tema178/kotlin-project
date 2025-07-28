@@ -9,7 +9,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-
+                implementation(libs.cor)
                 implementation(project(":resource-statuses-common"))
                 implementation(project(":stubs"))
             }

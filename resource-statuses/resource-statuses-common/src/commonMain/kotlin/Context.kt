@@ -7,6 +7,7 @@ data class Context(
     var state: State = State.NONE,
     val errors: MutableList<ResourceError> = mutableListOf(),
 
+    var corSettings: CorSettings = CorSettings(),
     var workMode: WorkMode = WorkMode.PROD,
     var stubCase: Stubs = Stubs.NONE,
 
@@ -16,6 +17,13 @@ data class Context(
     var filterRequest: Filter = Filter(),
 
     var resource: Resource = Resource(),
-    var resources: List<Resource> = mutableListOf(),
+    var resources: MutableList<Resource> = mutableListOf(),
+
+    var validating: Resource = Resource(),
+    var validated: Resource = Resource(),
+
+    var filterValidating: Filter = Filter(),
+    var filterValidated: Filter = Filter(),
+
 
     )

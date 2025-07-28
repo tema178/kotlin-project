@@ -8,6 +8,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
+                api("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
                 implementation(libs.kotlinx.datetime)
                 api("libs:lib-logging-common")
 

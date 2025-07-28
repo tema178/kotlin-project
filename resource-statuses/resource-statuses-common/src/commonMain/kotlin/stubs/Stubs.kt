@@ -6,6 +6,8 @@ enum class Stubs {
     NOT_FOUND,
     BAD_ID,
     BAD_TYPE,
+    BAD_STATUS,
     CANNOT_DELETE,
-    BAD_SEARCH_STRING
+    BAD_SEARCH_STRING,
+    DB_ERROR
 }
