@@ -31,6 +31,7 @@ coroutines-reactive = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-react
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version = "0.23.2" }
+cor = { module = "libs:cor" }
 
 # Spring
 spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
