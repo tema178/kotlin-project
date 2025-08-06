@@ -18,6 +18,11 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation(project(":repo-tests"))
+                implementation(project(":resource-statuses-common"))
+
+
+
 
                 api(libs.coroutines.test)
             }

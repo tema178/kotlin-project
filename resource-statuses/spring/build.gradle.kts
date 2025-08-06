@@ -27,10 +27,13 @@ dependencies {
 
     implementation("libs:lib-logging-logback")
     implementation(projects.biz)
+    implementation(projects.repoInmemory)
 
     // tests
     testImplementation(kotlin("test-junit5"))
     testImplementation(libs.spring.test)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.spring.mockk)
 
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))

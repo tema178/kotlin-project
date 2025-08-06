@@ -32,12 +32,15 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version = "0.23.2" }
 cor = { module = "libs:cor" }
+uuid = "com.benasher44:uuid:0.8.4"
 
 # Spring
 spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
 spring-webflux-ui = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version = "2.3.0" }
 spring-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-mockk = "com.ninja-squad:springmockk:4.0.2"
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version = "5.2.1" }
 
 # Logging
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
@@ -47,6 +50,8 @@ logger-fluentd = { module = "org.fluentd:fluent-logger", version = "0.3.4" }
 
 kafka-client = { module = "org.apache.kafka:kafka-clients", version = "3.7.0" }
 
+# Databases
+db-cache4k = "io.github.reactivecircus.cache4k:cache4k:0.13.0"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

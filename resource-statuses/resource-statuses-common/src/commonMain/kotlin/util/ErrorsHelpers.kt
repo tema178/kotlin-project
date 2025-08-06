@@ -18,12 +18,19 @@ fun Throwable.asResourceError(
     exception = this,
 )
 
-inline fun Context.addError(vararg error: ResourceError) = errors.addAll(error)
+inline fun Context.addError(error: ResourceError) = errors.add(error)
+inline fun Context.addErrors(error: Collection<ResourceError>) = errors.addAll(error)
 
 inline fun Context.fail(error: ResourceError) {
     addError(error)
     state = State.FAILING
 }
+
+inline fun Context.fail(errors: Collection<ResourceError>) {
+    addErrors(errors)
+    state = State.FAILING
+}
+
 
 inline fun errorValidation(
     field: String,
@@ -40,4 +47,17 @@ inline fun errorValidation(
     group = "validation",
     message = "Validation error for field $field: $description",
     level = level,
+)
+
+
+inline fun errorSystem(
+    violationCode: String,
+    level: LogLevel = LogLevel.ERROR,
+    e: Throwable,
+) = ResourceError(
+    code = "system-$violationCode",
+    group = "system",
+    message = "System error occurred. Our stuff has been informed, please retry later",
+    level = level,
+    exception = e,
 )
