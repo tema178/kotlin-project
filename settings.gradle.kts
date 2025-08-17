@@ -13,3 +13,4 @@ rootProject.name = "kotlin-project"
 includeBuild("lessons")
 includeBuild("resource-statuses")
 includeBuild("libs")
+includeBuild("other")

@@ -13,19 +13,19 @@ class BizRepoUpdateTest {
 
     private val userId = UserId("321")
     private val command = Command.UPDATE
-    private val initAd = Resource(
+    private val initRes = Resource(
         id = ResourceId("123"),
         status = ResourceStatus("abc"),
         type = ResourceType("abc"),
         updatedBy = userId
     )
     private val repo = RepositoryMock(
-        invokeReadAd = {
+        invokeReadRes = {
             DbResponseOk(
-                data = initAd,
+                data = initRes,
             )
         },
-        invokeUpdateAd = {
+        invokeUpdateRes = {
             DbResponseOk(
                 data = Resource(
                     id = ResourceId("123"),

@@ -2,5 +2,5 @@ import models.Resource
 import repo.IRepo
 
 interface IRepoInitializable: IRepo {
-    fun save(ads: Collection<Resource>) : Collection<Resource>
+    fun save(resources: Collection<Resource>) : Collection<Resource>
 }

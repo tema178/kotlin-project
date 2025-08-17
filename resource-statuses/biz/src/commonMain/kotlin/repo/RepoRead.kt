@@ -15,7 +15,7 @@ fun ICorChainDsl<Context>.repoRead(title: String) = worker {
         when(val result = adRepo.read(request)) {
             is DbResponseOk -> adRepoRead = result.data
             is DbResponseErr -> fail(result.errors)
-            is DbAdResponseErrWithData -> {
+            is DbResponseErrWithData -> {
                 fail(result.errors)
                 adRepoRead = result.data
             }

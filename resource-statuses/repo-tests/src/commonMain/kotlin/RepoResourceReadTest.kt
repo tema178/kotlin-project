@@ -7,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 
-abstract class RepoAdReadTest {
+abstract class RepoResourceReadTest {
     abstract val repo: IRepo
     protected open val readSucc = initObjects[0]
 
@@ -16,7 +16,7 @@ abstract class RepoAdReadTest {
         val result = repo.read(DbIdRequest(readSucc.id))
 
         assertIs<DbResponseOk>(result)
-        assertEquals(readSucc, result.data)
+        assertEquals(readSucc, result.data.copy(updatedAt = updatedAtStub))
     }
 
     @Test

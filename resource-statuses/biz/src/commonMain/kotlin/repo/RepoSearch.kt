@@ -18,7 +18,7 @@ fun ICorChainDsl<Context>.repoSearch(title: String) = worker {
         )
         when(val result = adRepo.search(request)) {
             is DbResponsesOk -> adsRepoDone = result.data.toMutableList()
-            is DbAdsResponseErr -> fail(result.errors)
+            is DbResourcesResponseErr -> fail(result.errors)
         }
     }
 }

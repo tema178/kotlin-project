@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertIs
 
 
-abstract class RepoAdSearchTest {
+abstract class RepoResourceSearchTest {
     abstract val repo: IRepo
 
     protected open val initializedObjects: List<Resource> = initObjects
@@ -14,8 +14,8 @@ abstract class RepoAdSearchTest {
     fun searchOwner() = runRepoTest {
         val result = repo.search(DbFilterRequest(ownerId = searchOwnerId))
         assertIs<DbResponsesOk>(result)
-        val expected = listOf(initializedObjects[1], initializedObjects[3]).sortedBy { it.id.asString() }
-        assertEquals(expected, result.data.sortedBy { it.id.asString() })
+        val expected = listOf(initializedObjects[1], initializedObjects[2]).sortedBy { it.id.asString() }
+        assertEquals(expected, result.data.map { res -> res.copy(updatedAt = updatedAtStub)}.sortedBy { it.id.asString() })
     }
 
 

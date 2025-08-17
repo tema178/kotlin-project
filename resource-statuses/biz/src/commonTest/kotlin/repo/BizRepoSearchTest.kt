@@ -13,16 +13,16 @@ class BizRepoSearchTest {
 
     private val userId = UserId("321")
     private val command = Command.SEARCH
-    private val initAd = Resource(
+    private val initRes = Resource(
         id = ResourceId("123"),
         status = ResourceStatus("abc"),
         type = ResourceType("abc"),
         updatedBy = userId
     )
     private val repo = RepositoryMock(
-        invokeSearchAd = {
+        invokeSearchRes = {
             DbResponsesOk(
-                data = listOf(initAd),
+                data = listOf(initRes),
             )
         }
     )

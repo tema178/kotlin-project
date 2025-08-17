@@ -16,7 +16,7 @@ fun ICorChainDsl<Context>.repoCreate(title: String) = worker {
         when(val result = adRepo.create(request)) {
             is DbResponseOk -> adRepoDone = result.data
             is DbResponseErr -> fail(result.errors)
-            is DbAdResponseErrWithData -> fail(result.errors)
+            is DbResponseErrWithData -> fail(result.errors)
         }
     }
 }

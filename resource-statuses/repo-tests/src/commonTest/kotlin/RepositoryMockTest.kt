@@ -6,13 +6,13 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 
-class AdRepositoryMockTest {
+class RepositoryMockTest {
     private val repo = RepositoryMock(
-        invokeCreateAd = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("create") }) },
-        invokeReadAd = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("read") }) },
-        invokeUpdateAd = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("update") }) },
-        invokeDeleteAd = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("delete") }) },
-        invokeSearchAd = { DbResponsesOk(listOf(ResourceStub.prepareResult { type = ResourceType("search") })) },
+        invokeCreateRes = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("create") }) },
+        invokeReadRes = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("read") }) },
+        invokeUpdateRes = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("update") }) },
+        invokeDeleteRes = { DbResponseOk(ResourceStub.prepareResult { type = ResourceType("delete") }) },
+        invokeSearchRes = { DbResponsesOk(listOf(ResourceStub.prepareResult { type = ResourceType("search") })) },
     )
 
     @Test

@@ -6,6 +6,6 @@ import models.UserId
 
 data class DbFilterRequest(
     val status: ResourceStatus = ResourceStatus.NONE,
-    val type: ResourceType = ResourceType.DEFAULT,
+    val type: ResourceType = ResourceType.NONE,
     val ownerId: UserId = UserId.NONE
 )

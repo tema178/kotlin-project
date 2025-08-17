@@ -16,7 +16,7 @@ class BizRepoCreateTest {
     private val command = Command.CREATE
     private val uuid = "10000000-0000-0000-0000-000000000001"
     private val repo = RepositoryMock(
-        invokeCreateAd = {
+        invokeCreateRes = {
             DbResponseOk(
                 data = Resource(
                     id = ResourceId(uuid),

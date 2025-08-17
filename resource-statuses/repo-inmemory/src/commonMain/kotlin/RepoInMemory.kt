@@ -17,7 +17,7 @@ class RepoInMemory(
         .expireAfterWrite(ttl)
         .build()
 
-    override fun save(ads: Collection<Resource>) = ads.map { ad ->
+    override fun save(resources: Collection<Resource>) = resources.map { ad ->
         val entity = Entity(ad)
         require(entity.id != null)
         cache.put(entity.id, entity)
@@ -45,8 +45,8 @@ class RepoInMemory(
     }
 
     override suspend fun update(rq: DbRequest): IDbResourceResponse = tryMethod {
-        val rq = rq.resource
-        val id = rq.id.takeIf { it != ResourceId.NONE } ?: return@tryMethod errorEmptyId
+        val rqRes = rq.resource
+        val id = rqRes.id.takeIf { it != ResourceId.NONE } ?: return@tryMethod errorEmptyId
         val key = id.asString()
 
         mutex.withLock {
@@ -54,7 +54,7 @@ class RepoInMemory(
             when {
                 old == null -> errorNotFound(id)
                 else -> {
-                    val new = rq.copy()
+                    val new = rqRes.copy()
                     val entity = Entity(new)
                     cache.put(key, entity)
                     DbResponseOk(new)

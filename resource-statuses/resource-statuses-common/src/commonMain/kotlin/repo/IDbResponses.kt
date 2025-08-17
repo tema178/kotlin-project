@@ -10,7 +10,7 @@ data class DbResponsesOk(
 ): IDbResponses
 
 @Suppress("unused")
-data class DbAdsResponseErr(
+data class DbResourcesResponseErr(
     val errors: List<ResourceError> = emptyList()
 ): IDbResponses {
     constructor(err: ResourceError): this(listOf(err))

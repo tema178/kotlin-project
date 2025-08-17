@@ -13,16 +13,16 @@ class BizRepoReadTest {
 
     private val userId = UserId("321")
     private val command = Command.READ
-    private val initAd = Resource(
+    private val initRes = Resource(
         id = ResourceId("123"),
         status = ResourceStatus("abc"),
         type = ResourceType("abc"),
         updatedBy = userId
     )
     private val repo = RepositoryMock(
-        invokeReadAd = {
+        invokeReadRes = {
             DbResponseOk(
-                data = initAd,
+                data = initRes,
             )
         }
     )
@@ -41,9 +41,9 @@ class BizRepoReadTest {
         )
         processor.exec(ctx)
         assertEquals(State.FINISHING, ctx.state)
-        assertEquals(initAd.id, ctx.resource.id)
-        assertEquals(initAd.type, ctx.resource.type)
-        assertEquals(initAd.status, ctx.resource.status)
+        assertEquals(initRes.id, ctx.resource.id)
+        assertEquals(initRes.type, ctx.resource.type)
+        assertEquals(initRes.status, ctx.resource.status)
     }
 
     @Test

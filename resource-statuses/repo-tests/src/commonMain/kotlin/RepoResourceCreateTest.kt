@@ -5,7 +5,7 @@ import repo.DbResponseOk
 import kotlin.test.*
 
 
-abstract class RepoAdCreateTest {
+abstract class RepoResourceCreateTest {
     abstract val repo: IRepoInitializable
     protected open val uuidNew = ResourceId("10000000-0000-0000-0000-000000000001")
 

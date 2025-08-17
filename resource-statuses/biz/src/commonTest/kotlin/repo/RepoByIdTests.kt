@@ -6,20 +6,19 @@ import RepositoryMock
 import StatusProcessor
 import kotlinx.coroutines.test.runTest
 import models.*
-import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-private val initAd = Resource(
+private val initRes = Resource(
     id = ResourceId("123"),
     status = ResourceStatus("abc"),
     type = ResourceType("abc")
 )
 private val repo = RepositoryMock(
-        invokeReadAd = {
-            if (it.id == initAd.id) {
+        invokeReadRes = {
+            if (it.id == initRes.id) {
                 DbResponseOk(
-                    data = initAd,
+                    data = initRes,
                 )
             } else errorNotFound(it.id)
         }

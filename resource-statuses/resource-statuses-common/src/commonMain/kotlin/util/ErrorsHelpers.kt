@@ -18,21 +18,21 @@ fun Throwable.asResourceError(
     exception = this,
 )
 
-inline fun Context.addError(error: ResourceError) = errors.add(error)
-inline fun Context.addErrors(error: Collection<ResourceError>) = errors.addAll(error)
+fun Context.addError(error: ResourceError) = errors.add(error)
+fun Context.addErrors(error: Collection<ResourceError>) = errors.addAll(error)
 
-inline fun Context.fail(error: ResourceError) {
+fun Context.fail(error: ResourceError) {
     addError(error)
     state = State.FAILING
 }
 
-inline fun Context.fail(errors: Collection<ResourceError>) {
+fun Context.fail(errors: Collection<ResourceError>) {
     addErrors(errors)
     state = State.FAILING
 }
 
 
-inline fun errorValidation(
+fun errorValidation(
     field: String,
     /**
      * Код, характеризующий ошибку. Не должен включать имя поля или указание на валидацию.
@@ -50,7 +50,7 @@ inline fun errorValidation(
 )
 
 
-inline fun errorSystem(
+fun errorSystem(
     violationCode: String,
     level: LogLevel = LogLevel.ERROR,
     e: Throwable,

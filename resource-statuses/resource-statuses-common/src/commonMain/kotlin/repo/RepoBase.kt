@@ -13,7 +13,7 @@ abstract class RepoBase: IRepo {
     protected suspend fun tryResourcesMethod(block: suspend () -> IDbResponses) = try {
         block()
     } catch (e: Throwable) {
-        DbAdsResponseErr(errorSystem("methodException", e = e))
+        DbResourcesResponseErr(errorSystem("methodException", e = e))
     }
 
 }

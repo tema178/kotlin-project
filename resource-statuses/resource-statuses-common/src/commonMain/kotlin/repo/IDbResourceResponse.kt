@@ -15,7 +15,7 @@ data class DbResponseErr(
     constructor(err: ResourceError): this(listOf(err))
 }
 
-data class DbAdResponseErrWithData(
+data class DbResponseErrWithData(
     val data: Resource,
     val errors: List<ResourceError> = emptyList()
 ): IDbResourceResponse {

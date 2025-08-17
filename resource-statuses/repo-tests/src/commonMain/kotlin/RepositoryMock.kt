@@ -2,30 +2,30 @@ import models.Resource
 import repo.*
 
 class RepositoryMock(
-    private val invokeCreateAd: (DbRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
-    private val invokeReadAd: (DbIdRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
-    private val invokeUpdateAd: (DbRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
-    private val invokeDeleteAd: (DbIdRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
-    private val invokeSearchAd: (DbFilterRequest) -> IDbResponses = { DEFAULT_ADS_SUCCESS_EMPTY_MOCK },
+    private val invokeCreateRes: (DbRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
+    private val invokeReadRes: (DbIdRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
+    private val invokeUpdateRes: (DbRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
+    private val invokeDeleteRes: (DbIdRequest) -> IDbResourceResponse = { DEFAULT_AD_SUCCESS_EMPTY_MOCK },
+    private val invokeSearchRes: (DbFilterRequest) -> IDbResponses = { DEFAULT_ADS_SUCCESS_EMPTY_MOCK },
 ): IRepo {
     override suspend fun create(rq: DbRequest): IDbResourceResponse {
-        return invokeCreateAd(rq)
+        return invokeCreateRes(rq)
     }
 
     override suspend fun read(rq: DbIdRequest): IDbResourceResponse {
-        return invokeReadAd(rq)
+        return invokeReadRes(rq)
     }
 
     override suspend fun update(rq: DbRequest): IDbResourceResponse {
-        return invokeUpdateAd(rq)
+        return invokeUpdateRes(rq)
     }
 
     override suspend fun delete(rq: DbIdRequest): IDbResourceResponse {
-        return invokeDeleteAd(rq)
+        return invokeDeleteRes(rq)
     }
 
     override suspend fun search(rq: DbFilterRequest): IDbResponses {
-        return invokeSearchAd(rq)
+        return invokeSearchRes(rq)
     }
 
     companion object {

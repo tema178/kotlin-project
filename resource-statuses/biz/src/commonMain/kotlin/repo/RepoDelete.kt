@@ -18,7 +18,7 @@ fun ICorChainDsl<Context>.repoDelete(title: String) = worker {
                 fail(result.errors)
                 adRepoDone = adRepoRead
             }
-            is DbAdResponseErrWithData -> {
+            is DbResponseErrWithData -> {
                 fail(result.errors)
                 adRepoDone = result.data
             }
