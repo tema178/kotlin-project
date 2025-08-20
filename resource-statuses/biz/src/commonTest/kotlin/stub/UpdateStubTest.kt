@@ -1,7 +1,6 @@
 package stub
 
 import Context
-import ResourceStub
 import StatusProcessor
 import kotlinx.coroutines.test.runTest
 import models.*
@@ -9,40 +8,58 @@ import stubs.Stubs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class AdCreateStubTest {
+class UpdateStubTest {
 
     private val processor = StatusProcessor()
     val id = ResourceId("666")
     val type = ResourceType("book")
+    val status = ResourceStatus("available")
 
     @Test
-    fun create() = runTest {
+    fun update() = runTest {
 
         val ctx = Context(
-            command = Command.CREATE,
+            command = Command.UPDATE,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.SUCCESS,
             request = Resource(
                 id = id,
-                type = type
+                type = type,
+                status = status
             ),
         )
         processor.exec(ctx)
-        assertEquals(ResourceStub.get().id, ctx.resource.id)
+        assertEquals(id, ctx.resource.id)
         assertEquals(type, ctx.resource.type)
+        assertEquals(status, ctx.resource.status)
+    }
+
+    @Test
+    fun badId() = runTest {
+        val ctx = Context(
+            command = Command.UPDATE,
+            state = State.NONE,
+            workMode = WorkMode.STUB,
+            stubCase = Stubs.BAD_ID,
+            resource = Resource(),
+        )
+        processor.exec(ctx)
+        assertEquals("id", ctx.errors.firstOrNull()?.field)
+        assertEquals("validation", ctx.errors.firstOrNull()?.group)
     }
 
     @Test
     fun badType() = runTest {
         val ctx = Context(
-            command = Command.CREATE,
+            command = Command.UPDATE,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_TYPE,
-            request = Resource(
+            resource = Resource(
                 id = id,
-                type = ResourceType.DEFAULT,
+                type = ResourceType(""),
+                status = status
             ),
         )
         processor.exec(ctx)
@@ -53,11 +70,11 @@ class AdCreateStubTest {
     @Test
     fun databaseError() = runTest {
         val ctx = Context(
-            command = Command.CREATE,
+            command = Command.UPDATE,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.DB_ERROR,
-            request = Resource(
+            resource = Resource(
                 id = id,
             ),
         )
@@ -68,13 +85,14 @@ class AdCreateStubTest {
     @Test
     fun badNoCase() = runTest {
         val ctx = Context(
-            command = Command.CREATE,
+            command = Command.UPDATE,
             state = State.NONE,
             workMode = WorkMode.STUB,
-            stubCase = Stubs.BAD_ID,
-            request = Resource(
+            stubCase = Stubs.BAD_SEARCH_STRING,
+            resource = Resource(
                 id = id,
-                type = type
+                type = type,
+                status = status
             ),
         )
         processor.exec(ctx)

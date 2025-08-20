@@ -9,16 +9,17 @@ import stubs.Stubs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class AdDeleteStubTest {
+
+class ReadStubTest {
 
     private val processor = StatusProcessor()
     val id = ResourceId("666")
 
     @Test
-    fun delete() = runTest {
+    fun read() = runTest {
 
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.SUCCESS,
@@ -27,16 +28,16 @@ class AdDeleteStubTest {
             ),
         )
         processor.exec(ctx)
-
-        val stub = ResourceStub.get()
-        assertEquals(stub.id, ctx.resource.id)
-        assertEquals(stub.type, ctx.resource.type)
+        with (ResourceStub.get()) {
+            assertEquals(id, ctx.resource.id)
+            assertEquals(type, ctx.resource.type)
+        }
     }
 
     @Test
     fun badId() = runTest {
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_ID,
@@ -50,7 +51,7 @@ class AdDeleteStubTest {
     @Test
     fun databaseError() = runTest {
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.DB_ERROR,
@@ -65,7 +66,7 @@ class AdDeleteStubTest {
     @Test
     fun badNoCase() = runTest {
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_TYPE,

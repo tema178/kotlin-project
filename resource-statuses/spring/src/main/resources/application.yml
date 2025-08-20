@@ -22,3 +22,16 @@ springdoc:
     urls:
       - name: v1
         url: specs-v1.yaml
+
+marketplace:
+  repository:
+    test: "inmemory"
+    prod: "$DB_TYPE_PROD:inmemory"
+
+psql:
+  schema: public
+  database: "${MKPLADS_DB:resource-statuses}"
+  host: "${MKPLADS_HOST:localhost}"
+  port: "${MKPLADS_PORT:5433}"
+  user: "${MKPLADS_USER:postgres}"
+  password: "${MKPLADS_PASS:pass}"

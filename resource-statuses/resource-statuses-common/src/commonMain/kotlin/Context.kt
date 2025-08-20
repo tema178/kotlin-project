@@ -1,5 +1,6 @@
 import models.*
 import kotlinx.datetime.Instant
+import repo.IRepo
 import stubs.Stubs
 
 data class Context(
@@ -16,14 +17,19 @@ data class Context(
     var request: Resource = Resource(),
     var filterRequest: Filter = Filter(),
 
-    var resource: Resource = Resource(),
-    var resources: MutableList<Resource> = mutableListOf(),
-
     var validating: Resource = Resource(),
     var validated: Resource = Resource(),
 
     var filterValidating: Filter = Filter(),
     var filterValidated: Filter = Filter(),
 
+    var adRepo: IRepo = IRepo.NONE,
+    var adRepoRead: Resource = Resource(), // То, что прочитали из репозитория
+    var adRepoPrepare: Resource = Resource(), // То, что готовим для сохранения в БД
+    var adRepoDone: Resource = Resource(),  // Результат, полученный из БД
+    var adsRepoDone: MutableList<Resource> = mutableListOf(),
 
+
+    var resource: Resource = Resource(),
+    var resources: MutableList<Resource> = mutableListOf(),
     )

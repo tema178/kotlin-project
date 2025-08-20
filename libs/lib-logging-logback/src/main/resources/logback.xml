@@ -60,7 +60,7 @@
     <!--    &lt;!&ndash; For ELK-Stack: Kafka log's host &ndash;&gt;-->
     <!--    <property name="LOGS_KAFKA_HOSTS" value="${BOOTSTRAP_SERVERS:-localhost:9094}"/>-->
     <!--    &lt;!&ndash; For ELK-Stack: Kafka log's topic &ndash;&gt;-->
-    <!--    <property name="LOGS_KAFKA_TOPIC" value="${LOGS_KAFKA_TOPIC:-ok-mkpl-logs}"/>-->
+    <!--    <property name="LOGS_KAFKA_TOPIC" value="${LOGS_KAFKA_TOPIC:-ok--logs}"/>-->
     <!--    <appender name="asyncMyLogKafka"-->
     <!--              class="net.logstash.logback.appender.LoggingEventAsyncDisruptorAppender">-->
     <!--        <if condition='!property("LOGS_KAFKA_HOSTS").equals("LOGS_KAFKA_HOSTS_IS_UNDEFINED")-->

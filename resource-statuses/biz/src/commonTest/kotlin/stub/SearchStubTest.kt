@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.test.fail
 
-class AdSearchStubTest {
+class SearchStubTest {
 
     private val processor = StatusProcessor()
     val filter = Filter(type = ResourceType("book"))

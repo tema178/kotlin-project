@@ -30,35 +30,35 @@ internal class ControllerTest {
     private lateinit var processor: StatusProcessor
 
     @Test
-    fun createAd() = testStub(
+    fun create() = testStub(
         "/v1/statuses/create",
         ResourceCreateRequest(),
         Context().toTransportCreate().copy(responseType = "create")
     )
 
     @Test
-    fun readAd() = testStub(
+    fun read() = testStub(
         "/v1/statuses/read",
         ResourceReadRequest(),
         Context().toTransportRead().copy(responseType = "read")
     )
 
     @Test
-    fun updateAd() = testStub(
+    fun update() = testStub(
         "/v1/statuses/update",
         ResourceUpdateRequest(),
         Context().toTransportUpdate().copy(responseType = "update")
     )
 
     @Test
-    fun deleteAd() = testStub(
+    fun delete() = testStub(
         "/v1/statuses/delete",
         ResourceDeleteRequest(),
         Context().toTransportDelete().copy(responseType = "delete")
     )
 
     @Test
-    fun searchAd() = testStub(
+    fun search() = testStub(
         "/v1/statuses/search",
         ResourceSearchRequest(),
         Context().toTransportSearch().copy(responseType = "search")

@@ -9,6 +9,7 @@ value class ResourceType(private val type: String) {
 
     companion object {
         val DEFAULT = ResourceType("common")
+        val NONE = ResourceType("")
     }
 
     fun isEmpty() = type.isEmpty()
