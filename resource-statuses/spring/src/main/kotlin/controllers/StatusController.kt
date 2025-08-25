@@ -26,7 +26,6 @@ class StatusController(
     suspend fun create(@RequestBody request: ResourceCreateRequest): ResourceCreateResponse =
         process(appSettings, request = request, this::class, "create")
 
-
     @PostMapping("read")
     suspend fun read(@RequestBody request: ResourceReadRequest): ResourceReadResponse =
         process(appSettings, request = request, this::class, "read")

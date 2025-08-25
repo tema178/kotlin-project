@@ -199,6 +199,9 @@ components:
       properties:
         id:
           $ref: '#/components/schemas/ResourceId'
+        name:
+          type: string
+          description: Имя ресурса
         resourceType:
           $ref: '#/components/schemas/ResourceType'
         status:
@@ -278,6 +281,8 @@ components:
       properties:
         id:
           $ref: '#/components/schemas/ResourceId'
+        name:
+          type: string
         resourceType:
           $ref: '#/components/schemas/ResourceType'
         status:

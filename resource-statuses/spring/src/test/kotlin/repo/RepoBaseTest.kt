@@ -38,6 +38,7 @@ internal abstract class RepoBaseTest {
             id = ResourceId(uuidNew)
             updatedBy = UserId.NONE
             updatedAt = updatedAtStub
+            lock = Lock(uuidNew)
         })
             .toTransportCreate()
             .copy(responseType = "create")
@@ -64,6 +65,7 @@ internal abstract class RepoBaseTest {
         ),
         prepareCtx(ResourceStub.prepareResult {
             type = ResourceType("add")
+            lock = Lock(uuidNew)
             updatedAt = updatedAtStub})
             .toTransportUpdate().copy(responseType = "update")
     )

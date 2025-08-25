@@ -6,6 +6,7 @@ object ResourceStubBook{
     val RESOURCE_BOOK_AVAILABLE: Resource
     get() = Resource(
         id = ResourceId("PeaceAndWar"),
+        name = "PeaceAndWar",
         type = ResourceType("book"),
         status = ResourceStatus("available"),
         updatedBy = UserId("admin"),

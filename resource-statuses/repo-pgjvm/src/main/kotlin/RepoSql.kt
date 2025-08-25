@@ -111,6 +111,9 @@ class RepoSql(
                     if (rq.status != ResourceStatus.NONE) {
                         add(table.status eq rq.status.asString())
                     }
+                    if (rq.name.isNotBlank()) {
+                        add(table.name eq rq.name)
+                    }
                 }.reduce { a, b -> a and b }
             }
             DbResponsesOk(data = res.map { table.from(it) })

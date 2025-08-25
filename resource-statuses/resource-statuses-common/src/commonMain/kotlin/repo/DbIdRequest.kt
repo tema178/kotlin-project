@@ -8,5 +8,5 @@ data class DbIdRequest(
     val id: ResourceId,
     val lock: Lock = Lock.NONE,
 ) {
-    constructor(ad: Resource): this(ad.id)
+    constructor(ad: Resource): this(ad.id, ad.lock)
 }

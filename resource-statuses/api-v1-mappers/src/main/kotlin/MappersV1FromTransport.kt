@@ -85,19 +85,22 @@ fun Context.fromTransport(request: ResourceSearchRequest) {
 
 private fun ResourceSearchFilter?.toInternal(): Filter = Filter(
     id = this?.id?.let(::ResourceId) ?: ResourceId.NONE,
-    type = this?.resourceType?.let(::ResourceType) ?: ResourceType.DEFAULT,
+    name = this?.name?: "",
+    type = this?.resourceType?.let(::ResourceType) ?: ResourceType.NONE,
     status = this?.status?.let(::ResourceStatus) ?: ResourceStatus.NONE,
     ownerId = this?.updatedBy?.let (::UserId) ?: UserId.NONE,
 )
 
 private fun ResourceCreateObject.toInternal(): Resource = Resource(
     id = this.id?.let(::ResourceId) ?: ResourceId.NONE,
+    name = this.name ?: "",
     type = this.resourceType?.let(::ResourceType) ?: ResourceType.DEFAULT,
     status = this.status?.let(::ResourceStatus) ?: ResourceStatus.NONE
 )
 
 private fun ResourceUpdateObject.toInternal(): Resource = Resource(
     id = this.id?.let(::ResourceId) ?: ResourceId.NONE,
+    name = this.name ?: "",
     type = this.resourceType?.let(::ResourceType) ?: ResourceType.DEFAULT,
     status = this.status?.let(::ResourceStatus) ?: ResourceStatus.NONE,
     lock = lock.toResourceLock(),

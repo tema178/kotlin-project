@@ -1,5 +1,6 @@
 object SqlFields {
     const val ID = "id"
+    const val NAME = "name"
     const val TYPE = "type"
     const val STATUS = "status"
     const val UPDATED_BY_ID = "updated_by_id"

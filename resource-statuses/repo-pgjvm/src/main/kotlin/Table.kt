@@ -6,6 +6,7 @@ import models.*
 
 class Table(tableName: String) : Table(tableName) {
     val id = text(SqlFields.ID)
+    val name = text(SqlFields.NAME)
     val type = text(SqlFields.TYPE)
     val status = text(SqlFields.STATUS)
     val updatedAt = long(SqlFields.UPDATED_AT)
@@ -16,6 +17,7 @@ class Table(tableName: String) : Table(tableName) {
 
     fun from(res: ResultRow) = Resource(
         id = ResourceId(res[id].toString()),
+        name = res[name],
         type = ResourceType(res[type]),
         status = ResourceStatus(res[status]),
         updatedBy = UserId(res[updatedBy].toString()),
@@ -25,6 +27,7 @@ class Table(tableName: String) : Table(tableName) {
 
     fun to(it: UpdateBuilder<*>, res: Resource, randomUuid: () -> String) {
         it[id] = res.id.takeIf { it != ResourceId.NONE }?.asString() ?: randomUuid()
+        it[name] = res.name
         it[type] = res.type.asString()
         it[status] = res.status.asString()
         it[updatedAt] = res.updatedAt.toEpochMilliseconds()

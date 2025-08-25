@@ -5,6 +5,8 @@ import models.Resource
 import models.ResourceError
 import models.ResourceId
 import repo.exceptions.RepoConcurrencyException
+import repo.exceptions.RepoException
+import util.errorSystem
 
 const val ERROR_GROUP_REPO = "repo"
 
@@ -26,6 +28,15 @@ val errorEmptyId = DbResponseErr(
     )
 )
 
+fun errorEmptyLock(id: ResourceId) = DbResponseErr(
+    ResourceError(
+        code = "$ERROR_GROUP_REPO-lock-empty",
+        group = ERROR_GROUP_REPO,
+        field = "lock",
+        message = "Lock for Ad ${id.asString()} is empty that is not admitted"
+    )
+)
+
 fun errorRepoConcurrency(
     oldResource: Resource,
     expectedLock: Lock,
@@ -42,5 +53,12 @@ fun errorRepoConcurrency(
         field = "lock",
         message = "The object with ID ${oldResource.id.asString()} has been changed concurrently by another user or process",
         exception = exception,
+    )
+)
+
+fun errorDb(e: RepoException) = DbResponseErr(
+    errorSystem(
+        violationCode = "db-error",
+        e = e
     )
 )

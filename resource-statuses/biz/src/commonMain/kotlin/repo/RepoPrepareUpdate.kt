@@ -12,8 +12,10 @@ fun ICorChainDsl<Context>.repoPrepareUpdate(title: String) = worker {
     on { state == State.RUNNING }
     handle {
         adRepoPrepare = adRepoRead.copy().apply {
+            name = validated.name
             type = validated.type
             status = validated.status
+            lock = validated.lock
         }
     }
 }

@@ -48,10 +48,12 @@ fun List<Resource>.toTransportResource(): List<ResourceResponseObject>? = this
 
 fun Resource.toTransportResource(): ResourceResponseObject = ResourceResponseObject(
     id = id.takeIf { it != ResourceId.NONE }?.asString(),
+    name = this.name,
     resourceType = type.asString(),
     status = status.asString(),
     updatedBy = updatedBy.asString(),
-    updatedAt = BigDecimal.valueOf(updatedAt.epochSeconds)
+    updatedAt = BigDecimal.valueOf(updatedAt.epochSeconds),
+    lock = lock.takeIf { it != Lock.NONE }?.asString()
 )
 
 

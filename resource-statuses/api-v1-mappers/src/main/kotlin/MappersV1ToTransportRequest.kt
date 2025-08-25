@@ -3,6 +3,7 @@ import org.tema.kotlin.resource.statuses.api.v1.models.*
 
 fun Resource.toTransportCreateResource() = ResourceCreateObject(
     id = id.asString(),
+    name = name,
     resourceType = type.asString(),
     status = status.asString()
     )
@@ -14,6 +15,7 @@ fun Resource.toTransportReadResource() = ResourceReadObject(
 
 fun Resource.toTransportUpdateResource() = ResourceUpdateObject(
     id = id.asString(),
+    name = name,
     resourceType = type.asString(),
     status = status.asString(),
     lock = lock.asString(),
@@ -27,6 +29,7 @@ fun Resource.toTransportDeleteResource() = ResourceDeleteObject(
 
 fun Resource.toTransportSearchResource() = ResourceSearchFilter(
     id = id.asString(),
+    name = name,
     resourceType = type.asString(),
     status = status.asString(),
     updatedBy = updatedBy.asString()

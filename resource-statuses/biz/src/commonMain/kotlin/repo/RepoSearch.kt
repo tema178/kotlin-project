@@ -12,6 +12,7 @@ fun ICorChainDsl<Context>.repoSearch(title: String) = worker {
     on { state == State.RUNNING }
     handle {
         val request = DbFilterRequest(
+            name = filterValidated.name,
             type = filterValidated.type,
             status = filterValidated.status,
             ownerId = filterValidated.ownerId,

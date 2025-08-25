@@ -93,6 +93,7 @@ class StatusProcessor(private val corSettings: CorSettings = CorSettings.NONE) {
             chain {
                 title = "Логика сохранения"
                 repoRead("Чтение объявления из БД")
+                checkLock("Проверяем консистентность по оптимистичной блокировке")
                 repoPrepareUpdate("Подготовка объекта для обновления")
                 repoUpdate("Обновление объявления в БД")
             }
@@ -118,6 +119,7 @@ class StatusProcessor(private val corSettings: CorSettings = CorSettings.NONE) {
             chain {
                 title = "Логика удаления"
                 repoRead("Чтение объявления из БД")
+                checkLock("Проверяем консистентность по оптимистичной блокировке")
                 repoPrepareDelete("Подготовка объекта для удаления")
                 repoDelete("Удаление объявления из БД")
             }
